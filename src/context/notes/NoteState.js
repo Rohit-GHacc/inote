@@ -35,7 +35,43 @@ const NoteState = (props)=>{
           "tag": "personal",
           "date": "2024-03-21T04:40:54.841Z",
           "__v": 0
-        }
+        },
+        {
+            "_id": "65fbba562d1695146ba9b4bd",
+            "user": "65f82c667cb11615fc79593a",
+            "title": "rohit",
+            "description": "Wake up early",
+            "tag": "personal",
+            "date": "2024-03-21T04:40:54.841Z",
+            "__v": 0
+          },
+          {
+            "_id": "65fbba562d1695146ba9b4bd",
+            "user": "65f82c667cb11615fc79593a",
+            "title": "rohit",
+            "description": "Wake up early",
+            "tag": "personal",
+            "date": "2024-03-21T04:40:54.841Z",
+            "__v": 0
+          },
+          {
+            "_id": "65fbba562d1695146ba9b4bd",
+            "user": "65f82c667cb11615fc79593a",
+            "title": "rohit",
+            "description": "Wake up early",
+            "tag": "personal",
+            "date": "2024-03-21T04:40:54.841Z",
+            "__v": 0
+          },
+          {
+            "_id": "65fbba562d1695146ba9b4bd",
+            "user": "65f82c667cb11615fc79593a",
+            "title": "rohit",
+            "description": "Wake up early",
+            "tag": "personal",
+            "date": "2024-03-21T04:40:54.841Z",
+            "__v": 0
+          }
       ];
       const [notes,setNotes] = useState(initialNotes);
     
