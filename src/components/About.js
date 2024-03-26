@@ -8,7 +8,7 @@ const About = () => {
     a.update()
   })
   return (
-    <div>
+    <div className='my-3'>
       This is About {a.state.name} and he is in class {a.state.class}
     </div>
   )
