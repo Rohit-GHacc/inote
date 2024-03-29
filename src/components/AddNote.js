@@ -5,7 +5,7 @@ const AddNote = () => {
     const context = useContext(noteContext)
     const {addNote} = context;
 
-    const [note,setNote] = useState({title:"hi", description: "rohit", tag:"default"})
+    const [note,setNote] = useState({title:"", description: "", tag:"default"})
     const onChange = (e)=>{
         setNote({...note,[e.target.name]: e.target.value})
     }
@@ -13,6 +13,12 @@ const AddNote = () => {
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
+    }
+    const handleClear = ()=>{
+      let title = document.getElementById('title');
+      title.value = '';
+      let desc = document.getElementById('description');
+      desc.value = '';
     }
   return (
     <div>
@@ -30,7 +36,8 @@ const AddNote = () => {
           <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
         </div> */}
-        <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
+        <button type="submit" className="btn btn-primary mx-2" onClick={handleClick}>Add a note</button>
+        <button type="button" className="btn btn-primary mx-2" onClick={handleClear}>Clear</button>
       </form>
     </div>
   )
