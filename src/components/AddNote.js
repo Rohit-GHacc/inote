@@ -20,6 +20,8 @@ const AddNote = () => {
       let desc = document.getElementById('description');
       desc.value = '';
     }
+    const title = document.getElementById('title')
+    // console.log(title);
   return (
     <div>
       <h1 className = 'my-3'> Add a note </h1>
@@ -32,11 +34,15 @@ const AddNote = () => {
           <label htmlFor="description" className="form-label">Description</label>
           <input type="text" className="form-control" id="description" name="description"  onChange= {onChange}/>
         </div>
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">Tag</label>
+          <input type="text" className="form-control" id="tag" name="tag"  onChange= {onChange}/>
+        </div>
         {/* <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
         </div> */}
-        <button type="submit" className="btn btn-primary mx-2" onClick={handleClick}>Add a note</button>
+        <button type="submit"   className="btn btn-primary mx-2" onClick={handleClick}>Add a note</button>
         <button type="button" className="btn btn-primary mx-2" onClick={handleClear}>Clear</button>
       </form>
     </div>
