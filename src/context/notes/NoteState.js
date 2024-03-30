@@ -74,34 +74,34 @@ const NoteState = (props) => {
     //         "__v": 0
     //     }
     // ];
-    
+
     const [notes, setNotes] = useState([]);
     // getnotes
-    const getNotes = async ()=>{
-        const response = await fetch(`${host}/api/notes/fetchallnotes`,{
+    const getNotes = async () => {
+        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
             method: 'GET',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
             }
 
         })
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         setNotes(json);
     }
-    
+
     // Add a note
     const addNote = async (title, description, tag) => {
         console.log('adding a new note')
         //API call
-        const response = await fetch(`${host}/api/notes/addnote`,{
+        const response = await fetch(`${host}/api/notes/addnote`, {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
             },
-            body: JSON.stringify({title,description , tag})
+            body: JSON.stringify({ title, description, tag })
         })
         const json = await response.json();
         console.log(json);
@@ -119,41 +119,45 @@ const NoteState = (props) => {
     // Delete a note
     const deleteNote = async (id) => {
         //API call
-        const response = await fetch(`${host}/api/notes/deletenote/${id}`,{
+        const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
             method: 'DELETE',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
             }
         })
         const json = response.json();
         console.log(json);
-        console.log('deleting a note ',id);
-        const newNotes = notes.filter((note)=>{return note._id !== id});
+        console.log('deleting a note ', id);
+        const newNotes = notes.filter((note) => { return note._id !== id });
         setNotes(newNotes);
     }
     // Edit a note
-    const editNote = async (id,title,description,tag) => {
+    const editNote = async (id, title, description, tag) => {
         //API call
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`,{
+        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
             method: 'PUT',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
             },
-            body: JSON.stringify({title,description , tag})
+            body: JSON.stringify({ title, description, tag })
         })
-        const json = response.json();
+        const json = await response.json();
+        console.log(json)
 
         // Logic to edit in client
-        for(let index = 0;index<notes.length();index++){
-            const element = notes[index];
-            if(element._id === id){
-                element.title = title;
-                element.tag = tag;
-                element.descriptoin = description;
+        let newNotes = JSON.parse(JSON.stringify(notes));
+        for (let index = 0; index < notes.length; index++) {
+            const element = newNotes[index];
+            if (element._id === id) {
+                newNotes[index].title= title;
+                newNotes[index].tag= tag;
+                newNotes[index].description= description;
+                break;
             }
         }
+        setNotes(newNotes)
     }
 
     return (
