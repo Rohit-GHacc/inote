@@ -6,6 +6,7 @@ const NotesItem = (props) => {
     const {note,updatenote} = props;
     
     return (
+        
         <div className = 'col-md-3'>
             <div className="card  my-3 " >
                     <div className="card-body mx-2">
