@@ -64,6 +64,7 @@ router.post('/login', [
     body('password').isLength({ min: 5 })
 ], async (req, res) => {
     const errors = validationResult(req);
+    let success = false;
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -75,16 +76,17 @@ router.post('/login', [
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if(!passwordCompare){
-            return res.status(400).json({error: "Please login wiht correct credentials"})
+            return res.status(400).json({error: "Please login with correct credentials"})
         }
         //following data is to be sent as a response if email and password matches
+        success = true;
         const data = {
             user:{
                 id: user.id
             }
         }
         const authtoken = jwt.sign(data,JWT_SECRET);
-        res.json({authtoken})
+        res.json({success,authtoken})
         
     } catch (error) {
         console.error(error.message);
