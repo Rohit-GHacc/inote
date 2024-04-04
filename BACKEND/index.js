@@ -6,7 +6,7 @@ const cors = require('cors')
 const port = 3001;
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:3001/"],
+    origin: ["https://inotes-brown.vercel.app/"],
     methods: ["POST"],
     credentials: true
 }));
