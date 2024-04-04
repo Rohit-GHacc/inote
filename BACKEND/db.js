@@ -12,7 +12,7 @@
 
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://127.0.0.1:27017/?directConnection=true';
+const mongoURI = 'mongodb+srv://Rohit:rohit142001@cluster1.0rgdmtp.mongodb.net/';
 
 const connectToMongo = async () => {
   try {

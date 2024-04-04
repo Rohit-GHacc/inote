@@ -5,11 +5,7 @@ const app = express();
 const cors = require('cors')
 const port = 3001;
 app.use(express.json())
-app.use(cors({
-    origin: ["http://localhost:3001/"],
-    methods: ["POST"],
-    credentials: true
-}));
+app.use(cors());
 app.get('/', (req,res)=>{
      res.send('Hello world');
 })
