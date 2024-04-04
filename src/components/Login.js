@@ -56,19 +56,19 @@ const Login = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='container my-5'>
+      <form onSubmit={handleSubmit} >
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" className="form-control" name="email" id="email" onChange={onChange} value={credentials.email} aria-describedby="emailHelp" />
+          <input type="email" className="form-control" name="email" id="email" placeholder='example@mail.com' onChange={onChange} value={credentials.email} aria-describedby="emailHelp" />
           {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" className="form-control" name="password" onChange={onChange} value={credentials.password} id="password" />
+          <input type="password" className="form-control" name="password" placeholder='Password must be atleast 5 characters long' onChange={onChange} value={credentials.password} id="password" />
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-dark">Submit</button>
       </form>
     </div>
   )

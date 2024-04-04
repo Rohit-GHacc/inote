@@ -1,14 +1,19 @@
 import React,{useEffect} from 'react'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation,useNavigate} from 'react-router-dom'
 const NavBar = () => {
+    const navigate=useNavigate()
     let location = useLocation();
     useEffect(()=>{
         // console.log(location.pathname)
     },[location])
+    const handleLogout = ()=>{
+        localStorage.removeItem('authtoken')
+        navigate('/login')
+    }
     return (
-        <nav className="navbar navbar-expand-lg  bg-dark navbar-dark">
+        <nav className="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Navbar</Link>
+                <Link className="navbar-brand" to="/">iNotes</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -21,10 +26,10 @@ const NavBar = () => {
                             <Link className={`nav-link ${location.pathname === '/about'?"active": ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <form className="d-flex">
-                            <Link to='/login' className="btn btn-primary mx-2" role= "button">Login</Link>
-                            <Link to='/signup' className="btn btn-primary " role= "button">Signup</Link>
-                    </form>
+{                    localStorage.getItem('authtoken')===null?<form className="d-flex">
+                            <Link to='/login' className="btn btn-light mx-2" role= "button">Login</Link>
+                            <Link to='/signup' className="btn btn-light" role= "button">Signup</Link>
+                    </form> : <Link  to='/login' onClick={handleLogout} className ='btn btn-light'> Logout</Link>}
                 </div>
             </div>
         </nav>

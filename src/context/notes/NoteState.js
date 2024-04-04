@@ -82,7 +82,7 @@ const NoteState = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
+                'auth-token': localStorage.getItem('authtoken')
             }
 
         })
@@ -99,7 +99,7 @@ const NoteState = (props) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
+                'auth-token': localStorage.getItem('authtoken')
             },
             body: JSON.stringify({ title, description, tag })
         })
@@ -123,7 +123,7 @@ const NoteState = (props) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
+                'auth-token': localStorage.getItem('authtoken')
             }
         })
         const json = response.json();
@@ -139,7 +139,7 @@ const NoteState = (props) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVmODJjNjY3Y2IxMTYxNWZjNzk1OTNhIn0sImlhdCI6MTcxMDc2NTk1Nn0.FAjQ72Jty76og9-dFP0fk8hIlVgLFYXHZmokDJeV9JE'
+                'auth-token': localStorage.getItem('authtoken')
             },
             body: JSON.stringify({ title, description, tag })
         })
@@ -151,9 +151,9 @@ const NoteState = (props) => {
         for (let index = 0; index < notes.length; index++) {
             const element = newNotes[index];
             if (element._id === id) {
-                newNotes[index].title= title;
-                newNotes[index].tag= tag;
-                newNotes[index].description= description;
+                newNotes[index].title = title;
+                newNotes[index].tag = tag;
+                newNotes[index].description = description;
                 break;
             }
         }
