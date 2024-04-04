@@ -15,9 +15,10 @@ const Login = (props) => {
 
     //   },
     //   body: JSON.stringify({ email: credentials.email, password: credentials.password })
-    // })
+    // })inotes-brown.vercel.app
+
     try {
-       await axios.post('http://localhost:3001/api/auth/login/', {
+       await axios.post('http://inotes-brown.vercel.app/api/auth/login/', {
         email: credentials.email, password: credentials.password
       })
         .then((response) => {
