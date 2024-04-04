@@ -1,14 +1,14 @@
 import React from 'react'
 import Notes from './Notes'
 import AddNote from './AddNote'
-const Home = () => {
+const Home = (props) => {
   // const Notes = useContext(noteContext)
   // const {notes,setNotes }= Notes;
   return (
     <div>
-      <AddNote/>
+      <AddNote showAlert={props.showAlert}/>
       <h1 className = 'my-3'> Your notes</h1>
-      <Notes/>
+      <Notes showAlert={props.showAlert}/>
     </div>
   )
 }

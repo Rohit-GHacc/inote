@@ -1,35 +1,59 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState({ email: '', password: '' })
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submit Button clicked')
-    const response = await fetch(`http://localhost:3001/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    // const response = await fetch(`http://localhost:3001/api/auth/login`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
 
-      },
-      body: JSON.stringify({ email: credentials.email, password: credentials.password })
-    })
-    const json = await response.json();
-    console.log(json);
-    if(json.success){
-      localStorage.setItem('authtoken',json.authtoken);
-      navigate('/');
+    //   },
+    //   body: JSON.stringify({ email: credentials.email, password: credentials.password })
+    // })
+    try {
+       await axios.post('http://localhost:3001/api/auth/login/', {
+        email: credentials.email, password: credentials.password
+      })
+        .then((response) => {
+          console.log(response.data.success)
+          // console.log(json);
+          if (response.data.success) {
+            localStorage.setItem('authtoken', response.data.authtoken);
+            navigate('/');
+            props.showAlert('success','Logged in Successfully')
+          }
+          else
+            props.showAlert('danger','Please enter correct credentials')
+        })
+        .catch(function (error) {
+          
+          props.showAlert('danger','Please enter correct credentials')  
+          console.log(error);
+        })
+      // console.log(json);
+      // if(json.success){
+      //   localStorage.setItem('authtoken',json.authtoken);
+      //   navigate('/');
+      // }
+      // else
+      // alert('Please enter correct credentials')
     }
-    else
-    alert('Please enter correct credentials')
+    catch (e) {
+      console.log('error: ', e.message)
+    }
   }
   // const onChange = ()=>{
   //   setCredentials({email,password})
   // }
-  const onChange = (e)=>{
+  const onChange = (e) => {
     e.preventDefault()
-    setCredentials({...credentials,[e.target.name]: e.target.value})
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   return (
     <div>

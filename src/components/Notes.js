@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef,useState } from 'react'
 import NotesItem from './NotesItem'
 import noteContext from '../context/notes/NoteContext'
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
+  const {showAlert }= props
   const { notes, getNotes,editNote } = context;
   useEffect(() => {
     getNotes()
@@ -26,6 +27,7 @@ const Notes = () => {
       console.log("Updating note ",note)
       editNote(note.id,note.etitle,note.edescription,note.etag);
       ref1.current.click();
+      showAlert('success','Updated the note successfully')
   }
   return (
     <div className='row '>

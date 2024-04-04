@@ -14,6 +14,7 @@ router.post('/createuser', [
     body('email', 'Enter a valid email').isEmail(),
     body('password').isLength({ min: 5 })
 ], async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -35,7 +36,7 @@ router.post('/createuser', [
             // console.log(req.body);
             // res.json(req.body)
             const salt = await bcrypt.genSalt(10);
-
+            success = true;
             const secPwd = await bcrypt.hash(req.body.password, salt);
             user = await User.create({
                 name: req.body.name,
@@ -48,7 +49,7 @@ router.post('/createuser', [
                 }
             }
             const authtoken = jwt.sign(data, JWT_SECRET)
-            res.json({ authtoken })
+            res.json({ success, authtoken })
             // res.json(user)
         }
     } catch (error) {
