@@ -3,7 +3,7 @@ import NoteContext from './NoteContext';
 import { useState } from 'react';
 
 const NoteState = (props) => {
-    const host = "http://inotes-brown.vercel.app";
+    const host = "http://localhost:3001";
     // const s1 = {
     //     "name" : "Harry",
     //     "class": "5b"

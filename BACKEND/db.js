@@ -11,8 +11,8 @@
 // module.exports = db;
 
 const mongoose = require('mongoose');
-
-const mongoURI = 'mongodb+srv://Rohit:rohit142001@cluster1.0rgdmtp.mongodb.net/';
+const {MONGOURI} = require('./config/keys')
+const mongoURI = MONGOURI;
 
 const connectToMongo = async () => {
   try {

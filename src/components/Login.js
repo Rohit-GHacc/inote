@@ -18,7 +18,7 @@ const Login = (props) => {
     // })inotes-brown.vercel.app
 
     try {
-       await axios.post('http://inotes-brown.vercel.app/api/auth/login/', {
+       await axios.post('http://localhost:3001/api/auth/login/', {
         email: credentials.email, password: credentials.password
       })
         .then((response) => {
