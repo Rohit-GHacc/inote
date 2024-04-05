@@ -9,7 +9,7 @@ const Signup = (props) => {
     e.preventDefault();
     console.log('Submit Button clicked')
     try {
-      await axios.post('inote-snowy.vercel.app/api/auth/createuser/', {
+      await axios.post('https://inote-snowy.vercel.app/api/auth/createuser/', {
         email: credentials.email, password: credentials.password, name:credentials.name, cpassword: credentials.cpassword
       })
         .then((response) => {
