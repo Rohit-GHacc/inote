@@ -6,7 +6,7 @@ const cors = require('cors')
 const port = 3001;
 app.use(express.json())
 app.use(cors({
-    origin: ["https://inote-easynotes-nine.vercel.app"],
+    origin: ["https://inotes-main.vercel.app"],
     methods: ['POST','GET','PUT','DELETE'],
     credentials: true
 }));
